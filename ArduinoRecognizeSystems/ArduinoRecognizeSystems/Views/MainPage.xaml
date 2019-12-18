@@ -4,16 +4,28 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ArduinoRecognizeSystems.MainPage">
+             x:Class="ArduinoRecognizeSystems.MainPage"
+             Title="Inicio">
 
     <StackLayout HorizontalOptions="Center"
                  VerticalOptions="Center"
-                 Padding="30">
-        <Button
-            CornerRadius="30"
-            Text="Upload"
-            BackgroundColor="Accent"
-            HorizontalOptions="Center"/>
+                 Padding="40"
+                 Spacing="45">
+        <StackLayout Orientation="Horizontal" Spacing="30">
+            <Button
+            CornerRadius="20"
+            Text="Send"
+            TextColor="White"
+            BackgroundColor="Accent"/>
+            <Button
+            CornerRadius="20"
+            Text="Get"
+            TextColor="White"
+            BackgroundColor="Accent"/>
+        </StackLayout>      
+        
+        <Label HorizontalOptions="Center" Text="Mensaje"/>
+
     </StackLayout>
 
 </ContentPage>
