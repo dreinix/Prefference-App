@@ -32,6 +32,19 @@
                         WidthRequest="50"
                         BackgroundColor="Green"/>
             </StackLayout>
+            <StackLayout>
+                <Label HorizontalOptions="Center"
+                   Text="Nivel de brillo"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+                <StackLayout>
+                   <Slider Minimum="0"
+                           Maximum="100"
+                           MinimumTrackColor="#7C4DFF"
+                           MaximumTrackColor="#7C4DFF"/>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </popup:PopupPage>
