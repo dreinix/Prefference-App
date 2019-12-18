@@ -6,25 +6,25 @@
              mc:Ignorable="d"
              x:Class="ArduinoRecognizeSystems.MainPage"
              Title="Inicio">
-
-    <StackLayout HorizontalOptions="Center"
-                 VerticalOptions="Center"
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Configuracion"
+                     x:Name="settingbtn"
+                     Clicked="settingbtn_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout VerticalOptions="Center"
                  Padding="40"
                  Spacing="45">
-        <StackLayout Orientation="Horizontal" Spacing="30">
-            <Button
+        <Button
             CornerRadius="20"
             Text="Send"
             TextColor="White"
             BackgroundColor="Accent"/>
-            <Button
+        <Button
             CornerRadius="20"
             Text="Get"
             TextColor="White"
             BackgroundColor="Accent"/>
-        </StackLayout>      
-        
-        <Label HorizontalOptions="Center" Text="Mensaje"/>
+        <Label HorizontalOptions="Center" Text="Aqui va el mensaje"/>
 
     </StackLayout>
 

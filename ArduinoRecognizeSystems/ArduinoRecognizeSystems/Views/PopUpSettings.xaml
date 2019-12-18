@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ArduinoRecognizeSystems.Views.PopUpSettings">
+    <StackLayout VerticalOptions="Center"
+                 Padding="25"
+                 HorizontalOptions="Center"
+                 BackgroundColor="White">
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <Label HorizontalOptions="Center"
+                   Text="Seleccione el color del led"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+            <StackLayout Orientation="Horizontal"
+                         Padding="10">
+                <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Blue"/>
+                <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Red"/>
+                <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Yellow"/>
+                <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Green"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</popup:PopupPage>

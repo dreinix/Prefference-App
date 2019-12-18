@@ -19,6 +19,9 @@ namespace ArduinoRecognizeSystems.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#7C4DFF"));
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
