@@ -5752,7 +5752,11 @@ namespace ArduinoRecognizeSystems.Droid
 			
 			// aapt resource value: 0x7F070062
 <<<<<<< HEAD
+<<<<<<< HEAD
 			public const int fingerprint_white = 2131165282;
+=======
+			public const int ic_mtrl_chip_checked_black = 2131165282;
+>>>>>>> parent of 01e1e46... CopiedToPC
 =======
 			public const int ic_mtrl_chip_checked_black = 2131165282;
 >>>>>>> parent of 01e1e46... CopiedToPC
@@ -6699,7 +6703,11 @@ namespace ArduinoRecognizeSystems.Droid
 			
 			// aapt resource value: 0x7F0B002D
 <<<<<<< HEAD
+<<<<<<< HEAD
 			public const int FingerprintDialog = 2131427373;
+=======
+			public const int FlyoutContent = 2131427373;
+>>>>>>> parent of 01e1e46... CopiedToPC
 =======
 			public const int FlyoutContent = 2131427373;
 >>>>>>> parent of 01e1e46... CopiedToPC
