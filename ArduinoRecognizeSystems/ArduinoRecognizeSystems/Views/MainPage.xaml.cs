@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace ArduinoRecognizeSystems
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        [Obsolete]
+        private async void settingbtn_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.PushAsync(new Views.PopUpSettings());
         }
     }
 }
