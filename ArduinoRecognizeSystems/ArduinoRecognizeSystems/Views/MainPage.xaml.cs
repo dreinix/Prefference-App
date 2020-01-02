@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using ArduinoRecognizeSystems2.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,6 +51,11 @@ namespace ArduinoRecognizeSystems
         private void SendButtom_Clicked(object sender, EventArgs e)
         {
             sendData();
+        }
+
+        private void btLogin_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new LogInPage();
         }
     }
 }
