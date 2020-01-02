@@ -6,15 +6,20 @@
              mc:Ignorable="d"
              x:Class="ArduinoRecognizeSystems.MainPage">
 
-    <StackLayout>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+       
 
-        <Button Text="Upload">
-            
-        </Button>
+        <Button Text="Upload" 
+                CornerRadius="30"
+                BackgroundColor="Accent"
+                HorizontalOptions="Center"
+                
+                
+                />
+        <Label Text="Waiting"  
+               
+            />
     </StackLayout>
 
 </ContentPage>
