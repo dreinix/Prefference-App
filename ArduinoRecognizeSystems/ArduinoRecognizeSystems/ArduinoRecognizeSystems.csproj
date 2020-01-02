@@ -6,8 +6,8 @@
     <PackageId>ArduinoRecognizeSystem</PackageId>
     <Authors>ArduinoRecognizeSystem</Authors>
     <Product>ArduinoRecognizeSystem</Product>
-    <AssemblyName>ArduinoRecognizeSystems</AssemblyName>
-    <RootNamespace>ArduinoRecognizeSystems</RootNamespace>
+    <AssemblyName>ArduinoRecognizeSystems2</AssemblyName>
+    <RootNamespace>ArduinoRecognizeSystems2</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,9 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\LogInPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\PopUpSettings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
