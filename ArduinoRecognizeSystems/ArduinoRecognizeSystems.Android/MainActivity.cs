@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.Fingerprint;
+using Plugin.CurrentActivity;
+
 
 namespace ArduinoRecognizeSystems.Droid
 {
@@ -22,8 +25,13 @@ namespace ArduinoRecognizeSystems.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#7C4DFF"));
 
+            //FingerPrint
+            CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
