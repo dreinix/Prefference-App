@@ -53,9 +53,9 @@ namespace ArduinoRecognizeSystems
             sendData();
         }
 
-        private void btLogin_Clicked(object sender, EventArgs e)
+        private async void btLogin_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new LogInPage();
+            await Navigation.PushAsync(new LogInPage());
         }
     }
 }

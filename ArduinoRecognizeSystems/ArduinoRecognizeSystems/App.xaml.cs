@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArduinoRecognizeSystems2.Views;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +11,17 @@ namespace ArduinoRecognizeSystems
         public App()
         {
             InitializeComponent();
+            bool isSet = Preferences.Get("IS_SET", false);
 
-            MainPage = new NavigationPage(new MainPage());
+            if (isSet == false)
+            {
+                MainPage = new NavigationPage(new InicioPage());
+
+            }
+            else if (isSet == true)
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
         }
 
         protected override void OnStart()
