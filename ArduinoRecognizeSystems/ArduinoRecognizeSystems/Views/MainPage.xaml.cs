@@ -3,17 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ArduinoRecognizeSystems
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
-    {
+    {   
+        
         public MainPage()
         {
             InitializeComponent();
@@ -23,6 +24,32 @@ namespace ArduinoRecognizeSystems
         private async void settingbtn_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.PushAsync(new Views.PopUpSettings());
+        }
+        private void sendData()
+        {
+            try
+            {
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                IPAddress iPAddress = IPAddress.Parse("192.168.1.112");
+                IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 8888);
+
+                string msg = "hola";
+                byte[] sendBuffer = Encoding.ASCII.GetBytes(msg);
+                socket.SendTo(sendBuffer, iPEndPoint);
+
+                byte[] recBuffer = new byte[1024];
+                int bytesrec = socket.Receive(recBuffer);
+                TestLabel.Text = Encoding.UTF8.GetString(recBuffer, 0, bytesrec);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+        }
+
+        private void SendButtom_Clicked(object sender, EventArgs e)
+        {
+            sendData();
         }
     }
 }

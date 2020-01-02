@@ -18,13 +18,15 @@
             CornerRadius="20"
             Text="Send"
             TextColor="White"
+            x:Name="SendButtom"
+            Clicked="SendButtom_Clicked"
             BackgroundColor="#7C4DFF"/>
         <Button
             CornerRadius="20"
             Text="Get"
             TextColor="White"
             BackgroundColor="#7C4DFF"/>
-        <Label HorizontalOptions="Center" Text="Aqui va el mensaje"/>
+        <Label HorizontalOptions="Center" Text="Aqui va el mensaje" x:Name="TestLabel"/>
 
     </StackLayout>
 

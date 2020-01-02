@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <PackageId>ArduinoRecognizeSystem</PackageId>
+    <Authors>ArduinoRecognizeSystem</Authors>
+    <Product>ArduinoRecognizeSystem</Product>
+    <AssemblyName>ArduinoRecognizeSystems2</AssemblyName>
+    <RootNamespace>ArduinoRecognizeSystems2</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
