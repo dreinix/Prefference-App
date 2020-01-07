@@ -1,5 +1,7 @@
-﻿using ArduinoRecognizeSystems2.Model;
+﻿using ArduinoRecognizeSystems2.Data;
+using ArduinoRecognizeSystems2.Model;
 using Plugin.Fingerprint;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +16,12 @@ namespace ArduinoRecognizeSystems2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogInPage : ContentPage
     {
+
+        private SQLiteAsyncConnection sqlite;
         public LogInPage()
         {
             InitializeComponent();
+            sqlite = DependencyService.Get<ILocalData>().GetConnection();
         }
 
 
@@ -26,6 +31,15 @@ namespace ArduinoRecognizeSystems2.Views
             if (user.LogIn())
             {
                 TestLabel.Text = "¡Autenticado!";
+                
+                if (user.CreateLocalData(sqlite))
+                {
+                    await DisplayAlert("DataSaved", "Se ha vinculado el usuario al teléfono correctamente", "ok");
+                }
+                else
+                {
+                    await DisplayAlert("DataSaved", "No se ha podido vincular el usuario", "ok");
+                }
             }
             else
             {
