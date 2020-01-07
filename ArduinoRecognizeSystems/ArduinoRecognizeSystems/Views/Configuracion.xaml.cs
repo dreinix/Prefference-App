@@ -21,7 +21,8 @@ namespace ArduinoRecognizeSystems2.Views
         private async void guardarbtn_Clicked(object sender, EventArgs e)
         {
             await DisplayAlert("Correcto", "Configuracion guardada", "ok");
-            await Navigation.pop(new MainPage());
+            
+            await Navigation.PopAsync();
         }
     }
 }

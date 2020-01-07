@@ -20,16 +20,20 @@
                          Padding="10">
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        BackgroundColor="Blue"/>
+                        BackgroundColor="Blue"
+                             x:Name="bluebtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        BackgroundColor="Red"/>
+                        BackgroundColor="Red"
+                             x:Name="redbtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        BackgroundColor="Yellow"/>
+                        BackgroundColor="Yellow"
+                             x:Name="yellowbtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        BackgroundColor="Green"/>
+                        BackgroundColor="Green"
+                        x:Name="greenbtn"/>
                 </StackLayout>
                 <StackLayout>
                     <Label HorizontalOptions="Center"
@@ -41,7 +45,8 @@
                         <Slider Minimum="0"
                            Maximum="100"
                            MinimumTrackColor="#7C4DFF"
-                           MaximumTrackColor="#7C4DFF"/>
+                           MaximumTrackColor="#7C4DFF"
+                                x:Name="sliderlight"/>
                     </StackLayout>
                 <Button Text="Guardar"
                     CornerRadius="20"
