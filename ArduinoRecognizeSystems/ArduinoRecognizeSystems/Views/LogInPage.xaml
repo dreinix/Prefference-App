@@ -8,6 +8,7 @@
     <StackLayout VerticalOptions="Center"
                  Padding="40"
                  Spacing="45">
+        
         <Button
             CornerRadius="20"
             Text="Auth"
@@ -16,6 +17,12 @@
             Clicked="btAuth_ClickedAsync"
             BackgroundColor="#7C4DFF"/>
         <Label HorizontalOptions="Center" Text="Aqui va el mensaje" x:Name="TestLabel"/>
-
+        <Entry
+            x:Name="txtUser"
+            
+            />
+        <Entry
+            x:Name="txtPass"
+            />
     </StackLayout>
 </ContentPage>
