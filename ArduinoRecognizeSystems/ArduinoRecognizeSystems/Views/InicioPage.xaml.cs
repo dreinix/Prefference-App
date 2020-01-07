@@ -18,11 +18,11 @@ namespace ArduinoRecognizeSystems2.Views
         public InicioPage()
         {
             InitializeComponent();
+            
         }
 
         private async void signinbtn_Clicked(object sender, EventArgs e)
-        {
-            
+        {            
             Debug.WriteLine("Preferece IS_SET, ha cambiado a TRUE");
             await Navigation.PushAsync(new MainPage());
         }
@@ -30,7 +30,7 @@ namespace ArduinoRecognizeSystems2.Views
         private void signup_Clicked(object sender, EventArgs e)
         {
             entClave.IsVisible = true;
-            entUsuario.IsVisible = true;
+            entUsuario.IsVisible = true;    
             entNombre.IsVisible = true;
             confirmarbtn.IsVisible = true;           
         }
