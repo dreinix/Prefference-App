@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ArduinoRecognizeSystems2.Views.InicioPage"
+             Title="Inicio">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="50" VerticalOptions="CenterAndExpand">
+            <Button Text="Entrar" 
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    CornerRadius="20"
+                    x:Name="signinbtn"
+                    Clicked="signinbtn_Clicked"/>
+            <Button Text="Registrarse"
+                    CornerRadius="20"
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    x:Name="signup"
+                    Clicked="signup_Clicked"/>
+           
+            <Entry x:Name="entNombre" Placeholder="Nombre" IsVisible="False"/>
+           
+            <Entry x:Name="entUsuario" Placeholder="Usuario" IsVisible="False"/>
+           
+            <Entry x:Name="entClave" Placeholder="Contraseña" IsPassword="True" IsVisible="False"/>
+            <Button Text="Confirmar"
+                    CornerRadius="20"
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    IsVisible="False"
+                    x:Name="confirmarbtn"
+                    Clicked="confirmarbtn_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
