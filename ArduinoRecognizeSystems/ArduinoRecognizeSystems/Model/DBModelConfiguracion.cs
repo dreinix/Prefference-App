@@ -7,6 +7,15 @@ namespace ArduinoRecognizeSystems2.Model
 {
     class DBModelConfiguracion
     {
+        public DBModelConfiguracion(int userID, string item, string value, int time, string status)
+        {
+            UserID = userID;
+            Item = item;
+            Value = value;
+            Time = time;
+            Status = status;
+        }
+
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
@@ -16,6 +25,23 @@ namespace ArduinoRecognizeSystems2.Model
         public string Value { get; set; }
         public int Time { get; set; }
         
-        public char[] Status { get; set; }
+        public string Status { get; set; }
+
+        public bool SaveConfig(Usuario user, SQLiteAsyncConnection sqlite)
+        {
+            try
+            {
+                DBModelConfiguracion Conf = new DBModelConfiguracion(user.ID,this.Item,this.Value,this.Time,this.Status);
+                sqlite.InsertAsync(Conf);
+                return true;
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+                Console.WriteLine(error);
+                return false;
+
+            }
+        }
     }
 }

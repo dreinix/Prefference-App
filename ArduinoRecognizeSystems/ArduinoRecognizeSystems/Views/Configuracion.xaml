@@ -20,18 +20,22 @@
                          Padding="10">
                     <Button CornerRadius="40"
                         WidthRequest="50"
+                        Clicked="bluebtn_Clicked"
                         BackgroundColor="Blue"
                              x:Name="bluebtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
+                        Clicked="redbtn_Clicked"
                         BackgroundColor="Red"
                              x:Name="redbtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
+                        Clicked="yellowbtn_Clicked"
                         BackgroundColor="Yellow"
                              x:Name="yellowbtn"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
+                        Clicked="greenbtn_Clicked"
                         BackgroundColor="Green"
                         x:Name="greenbtn"/>
                 </StackLayout>

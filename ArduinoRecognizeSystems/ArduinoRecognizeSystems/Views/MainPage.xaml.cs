@@ -31,10 +31,10 @@ namespace ArduinoRecognizeSystems
             try
             {
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                IPAddress iPAddress = IPAddress.Parse("192.168.43.112");
+                IPAddress iPAddress = IPAddress.Parse("192.168.0.112");
                 IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 8888);
 
-                string msg = "hola";
+                string msg = "1_1_1";
                 byte[] sendBuffer = Encoding.ASCII.GetBytes(msg);
                 socket.SendTo(sendBuffer, iPEndPoint);
 
@@ -44,8 +44,7 @@ namespace ArduinoRecognizeSystems
             }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-            
+            }           
         }
 
         private void SendButtom_Clicked(object sender, EventArgs e)

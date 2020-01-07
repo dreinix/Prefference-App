@@ -16,7 +16,6 @@ namespace ArduinoRecognizeSystems2.Model
         private string _Pass;
         private string _Name;
 
-        private SQLiteAsyncConnection sqlitecon;
         String conectionString = @"Data Source=148.103.246.141;Initial Catalog=ARSDB;Persist Security Info=True;User ID=ARSUser;Password=ars123";
         public int ID { get; }
         
