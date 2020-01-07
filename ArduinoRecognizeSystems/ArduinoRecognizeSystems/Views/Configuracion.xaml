@@ -6,6 +6,49 @@
              mc:Ignorable="d"
              x:Class="ArduinoRecognizeSystems2.Views.Configuracion">
     <ContentPage.Content>
-ggggg
+        <StackLayout VerticalOptions="Center"
+                 Padding="25"
+                 HorizontalOptions="Center"
+                 BackgroundColor="White">            
+                <Label HorizontalOptions="Center"
+                   Text="Seleccione el color del led"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal"
+                         Padding="10">
+                    <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Blue"/>
+                    <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Red"/>
+                    <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Yellow"/>
+                    <Button CornerRadius="40"
+                        WidthRequest="50"
+                        BackgroundColor="Green"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label HorizontalOptions="Center"
+                   Text="Nivel de brillo"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+                    <StackLayout>
+                        <Slider Minimum="0"
+                           Maximum="100"
+                           MinimumTrackColor="#7C4DFF"
+                           MaximumTrackColor="#7C4DFF"/>
+                    </StackLayout>
+                <Button Text="Guardar"
+                    CornerRadius="20"
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    x:Name="guardarbtn"
+                    Clicked="guardarbtn_Clicked"/>
+            </StackLayout>
+            </StackLayout>        
     </ContentPage.Content>
 </ContentPage>

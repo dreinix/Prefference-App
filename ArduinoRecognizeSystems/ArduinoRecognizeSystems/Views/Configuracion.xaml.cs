@@ -16,5 +16,10 @@ namespace ArduinoRecognizeSystems2.Views
         {
             InitializeComponent();
         }
+
+        private void guardarbtn_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
