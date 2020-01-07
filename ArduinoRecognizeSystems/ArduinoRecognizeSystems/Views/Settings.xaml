@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ArduinoRecognizeSystems2.Views.Configuracion"
-             Title="Configuracion">
+             x:Class="ArduinoRecognizeSystems.Views.Settings">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center"
+        <StackLayout>
+            <StackLayout VerticalOptions="Center"
                  Padding="25"
                  HorizontalOptions="Center"
-                 BackgroundColor="White">            
+                 BackgroundColor="White">
                 <Label HorizontalOptions="Center"
                    Text="Seleccione el color del led"
                    FontSize="20"
@@ -22,7 +22,7 @@
                         WidthRequest="50"
                         BackgroundColor="Blue"
                              x:Name="bluebtn"
-                            Clicked="bluebtn_Clicked"/>
+                           Clicked="bluebtn_Clicked"/>
                     <Button CornerRadius="40"
                         WidthRequest="50"
                         BackgroundColor="Red"
@@ -37,7 +37,7 @@
                         WidthRequest="50"
                         BackgroundColor="Green"
                         x:Name="greenbtn"
-                        Clicked="greenbtn_Clicked"/>
+                       Clicked="greenbtn_Clicked"/>
                 </StackLayout>
                 <StackLayout>
                     <Label HorizontalOptions="Center"
@@ -45,32 +45,33 @@
                    FontSize="20"
                    TextColor="Black"
                    FontAttributes="Bold"/>
-                <Button Text="Blink"
+                    <Button Text="Blink"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
                     TextColor="White"
                         x:Name="blinkbtn"
-                       Clicked="blinkbtn_Clicked"/>
-                <Button Text="Static"
+                    Clicked="blinkbtn_Clicked"/>
+                    <Button Text="Static"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
                     TextColor="White"
                     x:Name="staticbtn"
                         Clicked="staticbtn_Clicked"/>
 
-                <Button Text="Cicle"
+                    <Button Text="Cicle"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
                     TextColor="White"
                         x:Name="ciclebtn"
                         Clicked="ciclebtn_Clicked"/>
-                <Button Text="Guardar"
+                    <Button Text="Guardar"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
                     TextColor="White"
                     x:Name="guardarbtn"
                     Clicked="guardarbtn_Clicked"/>
+                </StackLayout>
             </StackLayout>
-            </StackLayout>        
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

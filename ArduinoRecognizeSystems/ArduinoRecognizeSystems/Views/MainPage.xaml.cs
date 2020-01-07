@@ -1,4 +1,5 @@
-﻿using ArduinoRecognizeSystems2.Views;
+﻿using ArduinoRecognizeSystems.Views;
+using ArduinoRecognizeSystems2.Views;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace ArduinoRecognizeSystems
         [Obsolete]
         private async void settingbtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Configuracion());
+            await Navigation.PushAsync(new Settings());
         }
         private void sendData()
         {
