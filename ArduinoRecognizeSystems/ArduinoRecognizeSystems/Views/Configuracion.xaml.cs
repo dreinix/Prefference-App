@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArduinoRecognizeSystems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,10 @@ namespace ArduinoRecognizeSystems2.Views
             InitializeComponent();
         }
 
-        private void guardarbtn_Clicked(object sender, EventArgs e)
+        private async void guardarbtn_Clicked(object sender, EventArgs e)
         {
-
+            await DisplayAlert("Correcto", "Configuracion guardada", "ok");
+            await Navigation.pop(new MainPage());
         }
     }
 }

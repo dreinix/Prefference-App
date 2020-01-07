@@ -24,7 +24,7 @@ namespace ArduinoRecognizeSystems
         [Obsolete]
         private async void settingbtn_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.PushAsync(new Views.PopUpSettings());
+            await Navigation.PushAsync(new Configuracion());
         }
         private void sendData()
         {

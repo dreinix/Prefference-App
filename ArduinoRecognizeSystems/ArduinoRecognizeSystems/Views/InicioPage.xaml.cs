@@ -1,5 +1,4 @@
 ﻿using ArduinoRecognizeSystems;
-using ArduinoRecognizeSystems.Views;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -23,7 +22,7 @@ namespace ArduinoRecognizeSystems2.Views
 
         private async void signinbtn_Clicked(object sender, EventArgs e)
         {
-            Preferences.Set("IS_SET", true);
+            
             Debug.WriteLine("Preferece IS_SET, ha cambiado a TRUE");
             await Navigation.PushAsync(new MainPage());
         }
@@ -33,12 +32,21 @@ namespace ArduinoRecognizeSystems2.Views
             entClave.IsVisible = true;
             entUsuario.IsVisible = true;
             entNombre.IsVisible = true;
-            confirmarbtn.IsVisible = true;
+            confirmarbtn.IsVisible = true;           
         }
 
         private async void confirmarbtn_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.PushAsync(new PopUpSettings());
+            if (string.IsNullOrEmpty(entClave.Text) || string.IsNullOrEmpty(entNombre.Text) || string.IsNullOrEmpty(entUsuario.Text))
+            {
+                await DisplayAlert("Error", "Campos vacios", "OK");
+            }
+            else
+            {
+                Preferences.Set("IS_SET", true);
+                await Navigation.PushAsync(new Configuracion());
+            }
+            
         }
     }
 }
