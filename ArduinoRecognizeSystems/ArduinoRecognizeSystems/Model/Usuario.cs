@@ -20,14 +20,10 @@ namespace ArduinoRecognizeSystems2.Model
         private string _St;
 
 
-        private static String conectionString = @"Data Source=148.103.246.141;Initial Catalog=ARSDB;Persist Security Info=True;User ID=ARSUser;Password=ars123";
-        [PrimaryKey, AutoIncrement]
+        private static String conectionString = @"Data Source=192.168.1.12;Initial Catalog=ARSDB;Persist Security Info=True;User ID=ARSUser;Password=ars123";
         public int ID { get { return _ID; } }
-        [MaxLength(150), Unique]
         public string Username { get { return _Username; } set { _Pass = value; } }
-        [MaxLength(150)]
         public string Name { get { return _Name; } set {_Name=value; } }
-        [MaxLength(150)]
         public string Pass { get { return _Pass; }}
 
         public string Status { get { return _St; } set { _St= value; } }
@@ -36,9 +32,47 @@ namespace ArduinoRecognizeSystems2.Model
             _Username = User;
             _Pass = pass;
         }
+        public Usuario()
+        {
+
+        }
+        public Usuario(string username, string pass, string name) : this(username, pass)
+        {
+            _Name = name;
+            Username = username;
+            Name = name;
+        }
+
+        public bool Registrar()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = con;
+                        cmd.Connection.Open();
+                        cmd.CommandText = "Insert into TblUser values (@user,@pas,@name,'act','none')";
+                        cmd.Parameters.AddWithValue("@user", _Username);
+                        cmd.Parameters.AddWithValue("@pas", _Pass);
+                        cmd.Parameters.AddWithValue("@name", _Name);
+                        int val = cmd.ExecuteNonQuery();
+                        if (val == 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                string hola = ex.Message;
+                return false;
+            }
+        }
         public bool LogIn()
-<<<<<<< HEAD
-<<<<<<< HEAD
         {
             try
             {
@@ -129,10 +163,6 @@ namespace ArduinoRecognizeSystems2.Model
         }
 
         public void CleanConfiguration()
-=======
->>>>>>> parent of 460cb13... idk
-=======
->>>>>>> parent of 460cb13... idk
         {
             try
             {
@@ -181,21 +211,6 @@ namespace ArduinoRecognizeSystems2.Model
                 string hola = ex.Message;
             }
             return conf;
-        }
-        private static void tblnames(SQLiteConnection sqlite)
-        {
-            var tables = sqlite.TableMappings;
-            foreach (var item in tables)
-            {   
-                string name = item.TableName;
-                Console.WriteLine(name);
-            }
-
-        }
-        private static IEnumerable<Usuario> SelectUser(SQLiteConnection sqlite)
-        {
-            return sqlite.Query<Usuario>("Select * from Usuario where [Status]='lin'");
-
         }
         public static Usuario GetLocalUser()
         {

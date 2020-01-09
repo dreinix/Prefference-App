@@ -17,73 +17,116 @@ namespace ArduinoRecognizeSystems2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Configuracion : ContentPage
     {
-<<<<<<<<< Temporary merge branch 1
+        Usuario LocalUser;
         
+
         public Configuracion()
         {
             InitializeComponent();
+            LocalUser = Usuario.GetLocalUser();
+            List<UserConfiguration> UserConf = LocalUser.GetConfiguration();
+            Button[] buttons = new Button[4] { bluebtn, redbtn, yellowbtn, greenbtn };
+            for (int i = 0; i < UserConf.Count; i++)
+            {
+                UserConfiguration uc = UserConf[i];
+                if (uc.Value == "-1")
+                {
+                    buttons[i].BackgroundColor = Color.White;
+                }
+            }
+            if (UserConf.Count > 3)
+            {
+                switch (UserConf[4].Value)
+                {
+                    default:
+                        blinkbtn.TextColor = Color.White;
+                        staticbtn.TextColor = Color.Black;
+                        ciclebtn.TextColor = Color.White;
+                        break;
+                    case "2":
+                        blinkbtn.TextColor = Color.Black;
+                        staticbtn.TextColor = Color.White;
+                        ciclebtn.TextColor = Color.White;
+                        break;
+                    case "3":
+                        blinkbtn.TextColor = Color.White;
+                        staticbtn.TextColor = Color.White;
+                        ciclebtn.TextColor = Color.Black;
+                        break;
+                }
+            }
             
-=========
-        private SQLiteAsyncConnection sqlite;
-        public Configuracion()
-        {
-            InitializeComponent();
-            sqlite = DependencyService.Get<ILocalData>().GetConnection();
->>>>>>>>> Temporary merge branch 2
         }
-        int[] colors = new int[5] {0,0,0,0,0};
+        int[] colors = new int[4] { 1, 1, 1, 1 };
+
+        int mod = 1;
         private async void guardarbtn_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Correcto", "Configuracion guardada", "ok");
-<<<<<<<<< Temporary merge branch 1
-            Application.Current.MainPage = new MainPage();
-        }
+            try
+            {
 
-        private void greenbtn_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void yellowbtn_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void redbtn_Clicked(object sender, EventArgs e)
-        {
-
+                UserConfiguration[] conf = new UserConfiguration[5];
+                LocalUser.CleanConfiguration();
+                for (int i = 0; i < 4; i++)
+                {
+                    conf[i] = new UserConfiguration(LocalUser.ID, "led", colors[i].ToString(), 0, "act");
+                }
+                conf[4] = new UserConfiguration(LocalUser.ID, "mod", mod.ToString(), 0, "act");
+                foreach (UserConfiguration item in conf)
+                {
+                    item.SaveConfig(LocalUser);
+                }
+                await DisplayAlert("Correcto", "Configuracion guardada", "ok");
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+                await DisplayAlert("Error", "No se pudo guardar la configuración", "ok");
+            }
         }
 
         private void bluebtn_Clicked(object sender, EventArgs e)
         {
-
+            int val = colors[0] * -1;
+            colors[0] = val;
+            if (val == 1)
+                bluebtn.BackgroundColor = Color.Blue;
+            else
+                bluebtn.BackgroundColor = Color.White;
         }
 
-        private void blinkbtn_Clicked(object sender, EventArgs e)
+        private void redbtn_Clicked(object sender, EventArgs e)
         {
-
+            int val = colors[1] * -1;
+            colors[1] = val;
+            if (val == 1)
+                redbtn.BackgroundColor = Color.Red;
+            else
+                redbtn.BackgroundColor = Color.White;
         }
 
-        private void staticbtn_Clicked(object sender, EventArgs e)
+        private void yellowbtn_Clicked(object sender, EventArgs e)
         {
-
+            int val = colors[2] * -1;
+            colors[2] = val;
+            if (val == 1)
+                yellowbtn.BackgroundColor = Color.Yellow;
+            else
+                yellowbtn.BackgroundColor = Color.White;
         }
 
-        private void ciclebtn_Clicked(object sender, EventArgs e)
-        {
 
-=========
-            
-            Usuario user = new Usuario();
-            DBModelConfiguracion[] conf;
-            for (int i = 0; i < 5; i++)
+        private void greenbtn_Clicked(object sender, EventArgs e)
+        {
+            int val = colors[3] * -1;
+            colors[3] = val;
+            if (val == 1)
             {
                 greenbtn.BackgroundColor = Color.Green;
             }
-            
-
-            await Navigation.PopAsync();
->>>>>>>>> Temporary merge branch 2
+            else
+                greenbtn.BackgroundColor = Color.White;
         }
 
         private void blinkbtn_Clicked(object sender, EventArgs e)

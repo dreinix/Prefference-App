@@ -22,7 +22,7 @@
                         WidthRequest="50"
                         BackgroundColor="Blue"
                              x:Name="bluebtn"
-                            Clicked="bluebtn_Clicked"/>
+                            Clicked="blinkbtn_Clicked"/>
                     
                     <Button CornerRadius="40"
                         WidthRequest="50"

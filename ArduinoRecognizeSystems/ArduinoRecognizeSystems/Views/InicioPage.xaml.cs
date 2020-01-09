@@ -1,4 +1,5 @@
 ﻿using ArduinoRecognizeSystems;
+using ArduinoRecognizeSystems2.Model;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
@@ -41,8 +42,39 @@ namespace ArduinoRecognizeSystems2.Views
             }
             else
             {
-                Preferences.Set("IS_SET", true);
-                await Navigation.PushAsync(new Configuracion());
+                try
+                {
+                    Preferences.Set("IS_SET", true);
+                    Usuario user = new Usuario(entUsuario.Text, entClave.Text, entNombre.Text);
+                    if (user.Registrar())
+                    {
+                        if (user.LogIn())
+                        {
+                            if (user.BindDevide())
+                            {
+                                await Navigation.PushAsync(new Configuracion());
+                            }
+                            else
+                            {
+                                await DisplayAlert("Error", "No se pudo vincular la cuenta al dispositivo", "OK");
+                            }
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", "No se pudo conectar al servidor", "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "No se pudo registrar el usuario, favor de revisar los datos y su conexión a internet", "OK");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    string er = ex.Message;
+                }
+               
+
             }
             
         }

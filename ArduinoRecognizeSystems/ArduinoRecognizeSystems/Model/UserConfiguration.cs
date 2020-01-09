@@ -8,7 +8,7 @@ namespace ArduinoRecognizeSystems2.Model
 {
     class UserConfiguration
     {
-        private static String conectionString = @"Data Source=148.103.246.141;Initial Catalog=ARSDB;Persist Security Info=True;User ID=ARSUser;Password=ars123";
+        private static String conectionString = @"Data Source=192.168.1.12;Initial Catalog=ARSDB;Persist Security Info=True;User ID=ARSUser;Password=ars123";
         public UserConfiguration(int userID, string item, string value, int time, string status)
         {
             UserID = userID;
