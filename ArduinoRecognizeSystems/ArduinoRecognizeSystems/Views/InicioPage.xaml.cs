@@ -1,5 +1,8 @@
 ﻿using ArduinoRecognizeSystems;
+using ArduinoRecognizeSystems2.Data;
+using ArduinoRecognizeSystems2.Model;
 using Rg.Plugins.Popup.Services;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,10 +18,11 @@ namespace ArduinoRecognizeSystems2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InicioPage : ContentPage
     {
+        private SQLiteAsyncConnection sqlite;
         public InicioPage()
         {
             InitializeComponent();
-            
+            sqlite = DependencyService.Get<ILocalData>().GetConnection();
         }
 
         private async void signinbtn_Clicked(object sender, EventArgs e)
@@ -44,9 +48,31 @@ namespace ArduinoRecognizeSystems2.Views
             else
             {
                 Preferences.Set("IS_SET", true);
+
+
+
+                Usuario user = new Usuario(entNombre.Text, entClave.Text);
+                if (user.LogIn())
+                {
+                    if (user.CreateLocalData(sqlite))
+                    {
+                        await DisplayAlert("DataSaved", "Se ha vinculado el usuario al teléfono correctamente", "ok");
+                    }
+                    else
+                    {
+                        await DisplayAlert("DataSaved", "No se ha podido vincular el usuario", "ok");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "No se ha podido vincular el usuario", "ok");
+                }
+
                 await Navigation.PushAsync(new Configuracion());
             }
+
             
+
         }
     }
 }

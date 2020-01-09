@@ -27,6 +27,53 @@ namespace ArduinoRecognizeSystems2.Model
             _Username = User;
             _Pass = pass;
         }
+
+        public Usuario(string username, string pass, string name) : this(username, pass)
+        {
+            _Name = name;
+            Username = username;
+            Name = name;
+        }
+
+        public bool Register()
+        {
+            try
+            {
+                bool exist = false;
+                using (SqlConnection con = new SqlConnection(conectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = con;
+                        cmd.Connection.Open();
+                        cmd.CommandText = "Insert into tblUser values (@user,@pas,@name";
+
+                        cmd.Parameters.AddWithValue("@user", _Username);
+                        cmd.Parameters.AddWithValue("@pas", _Pass);
+                        cmd.Parameters.AddWithValue("@name", _Name);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            exist = true;
+                        }
+                    }
+                    if (exist)
+                    {
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool LogIn()
         {
             try
