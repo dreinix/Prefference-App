@@ -11,17 +11,11 @@ namespace ArduinoRecognizeSystems
         public App()
         {
             InitializeComponent();
-            bool isSet = Preferences.Get("IS_SET", false);
 
-            if (isSet == false)
-            {
-                MainPage = new NavigationPage(new InicioPage());
+            MainPage = new NavigationPage(new MainPage());
 
-            }
-            else if (isSet == true)
-            {
-                MainPage = new NavigationPage(new MainPage());
-            }
+
+
         }
 
         protected override void OnStart()

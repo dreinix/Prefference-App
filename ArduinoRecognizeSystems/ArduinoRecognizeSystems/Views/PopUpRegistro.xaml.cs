@@ -1,52 +1,43 @@
-﻿using ArduinoRecognizeSystems;
-using ArduinoRecognizeSystems2.Data;
-using ArduinoRecognizeSystems2.Model;
-using SQLite;
+﻿using ArduinoRecognizeSystems2.Model;
+using ArduinoRecognizeSystems2.Views;
+using Rg.Plugins.Popup.Pages;
 using System;
-using System.Diagnostics;
-using Xamarin.Essentials;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ArduinoRecognizeSystems2.Views
+namespace ArduinoRecognizeSystems.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class InicioPage : ContentPage
+    public partial class PopUpRegistro : PopupPage
     {
-        public InicioPage()
+        public PopUpRegistro()
         {
-            InitializeComponent();            
-        }
-
-        private void signinbtn_Clicked(object sender, EventArgs e)
-        {          
-        
-             PopupNavigation.PushAsync(new PopUpForm());
-        }
-        
-        private void signup_Clicked(object sender, EventArgs e)
-        {
-            PopupNavigation.PushAsync(new PopUpRegistro());
+            InitializeComponent();
         }
 
         private async void confirmarbtn_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(entClave.Text) || string.IsNullOrEmpty(entNombre.Text) || string.IsNullOrEmpty(entUsuario.Text))
+            if (string.IsNullOrEmpty(nametxt.Text) || string.IsNullOrEmpty(usertxt.Text) || string.IsNullOrEmpty(clavetxt.Text))
             {
                 await DisplayAlert("Error", "Campos vacios", "OK");
-
 
             }
             else
             {
-                Preferences.Set("IS_SET", true);
-                Usuario user = new Usuario(entUsuario.Text, entClave.Text, entNombre.Text);
+
+                Usuario user = new Usuario(usertxt.Text, clavetxt.Text, nametxt.Text);
                 if (user.Registrar())
                 {
                     if (user.LogIn())
                     {
                         if (user.BindDevide())
                         {
+                            this.IsVisible = false;
                             await Navigation.PushAsync(new Configuracion());
                         }
                         else
@@ -63,9 +54,8 @@ namespace ArduinoRecognizeSystems2.Views
                 {
                     await DisplayAlert("Error", "No se pudo registrar el usuario, favor de revisar los datos y su conexión a internet", "OK");
                 }
-                
+
             }
-            
         }
     }
 }

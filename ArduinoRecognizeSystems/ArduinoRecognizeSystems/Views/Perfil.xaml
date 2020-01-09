@@ -30,7 +30,6 @@
                     TextColor="White"
                     x:Name="salirBtn"
                     Clicked="salirBtn_Clicked"/>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
