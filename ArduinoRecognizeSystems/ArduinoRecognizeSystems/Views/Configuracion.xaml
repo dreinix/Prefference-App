@@ -20,35 +20,37 @@
                          Padding="10">
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        Clicked="bluebtn_Clicked"
                         BackgroundColor="Blue"
                              x:Name="bluebtn"
                             Clicked="bluebtn_Clicked"/>
+                    
                     <Button CornerRadius="40"
                         WidthRequest="50"
                         Clicked="redbtn_Clicked"
                         BackgroundColor="Red"
-                             x:Name="redbtn"
-                            Clicked="redbtn_Clicked"/>
+                             x:Name="redbtn"/>
+                    
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        Clicked="yellowbtn_Clicked"
                         BackgroundColor="Yellow"
                              x:Name="yellowbtn"
                             Clicked="yellowbtn_Clicked"/>
+                    
                     <Button CornerRadius="40"
                         WidthRequest="50"
-                        Clicked="greenbtn_Clicked"
                         BackgroundColor="Green"
                         x:Name="greenbtn"
                         Clicked="greenbtn_Clicked"/>
                 </StackLayout>
+            
                 <StackLayout>
                     <Label HorizontalOptions="Center"
                    Text="Modes"
                    FontSize="20"
                    TextColor="Black"
                    FontAttributes="Bold"/>
+                    
+                    
                 <Button Text="Blink"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
@@ -68,6 +70,8 @@
                     TextColor="White"
                         x:Name="ciclebtn"
                         Clicked="ciclebtn_Clicked"/>
+                    
+                    
                 <Button Text="Guardar"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"

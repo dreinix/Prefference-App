@@ -28,11 +28,11 @@ namespace ArduinoRecognizeSystems2.Views
         private async void btAuth_ClickedAsync(object sender, EventArgs e)
         {
             Usuario user = new Usuario(txtUser.Text, txtPass.Text);
-            if (user.LogIn())
+            /*if (user.LogIn())
             {
                 TestLabel.Text = "¡Autenticado!";
                 
-                if (user.CreateLocalData(sqlite))
+                if (user.BindDevide())
                 {
                     await DisplayAlert("DataSaved", "Se ha vinculado el usuario al teléfono correctamente", "ok");
                 }
@@ -44,31 +44,9 @@ namespace ArduinoRecognizeSystems2.Views
             else
             {
                 TestLabel.Text = "Fail";
-            }
-            /*
-            var result = await CrossFingerprint.Current.IsAvailableAsync(true);
-
-            if (result)
-            {
-                var auth = await CrossFingerprint.Current.AuthenticateAsync("Toca el Sensor");
-                
-                int rowVal=auth.GetHashCode();
-
-                await DisplayAlert("Conversion", rowVal.ToString(), "Next");
-                
-                if (auth.Authenticated)
-                {
-                    TestLabel.Text = "¡Autenticado!";
-                }
-                else
-                {
-                    TestLabel.Text = "Huella digital no reconocida.";
-                }
-            }
-            else
-            {
-                await DisplayAlert("ooh oh", "Su telefono no tiene lector de huellas", "ok");
             }*/
+            
+            
         }
     }
 }

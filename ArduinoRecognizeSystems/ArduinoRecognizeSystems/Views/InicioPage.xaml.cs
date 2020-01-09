@@ -1,14 +1,7 @@
 ﻿using ArduinoRecognizeSystems;
-using ArduinoRecognizeSystems2.Data;
-using ArduinoRecognizeSystems2.Model;
 using Rg.Plugins.Popup.Services;
-using SQLite;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -44,35 +37,15 @@ namespace ArduinoRecognizeSystems2.Views
             if (string.IsNullOrEmpty(entClave.Text) || string.IsNullOrEmpty(entNombre.Text) || string.IsNullOrEmpty(entUsuario.Text))
             {
                 await DisplayAlert("Error", "Campos vacios", "OK");
+
+
             }
             else
             {
                 Preferences.Set("IS_SET", true);
-
-
-
-                Usuario user = new Usuario(entNombre.Text, entClave.Text);
-                if (user.LogIn())
-                {
-                    if (user.CreateLocalData(sqlite))
-                    {
-                        await DisplayAlert("DataSaved", "Se ha vinculado el usuario al teléfono correctamente", "ok");
-                    }
-                    else
-                    {
-                        await DisplayAlert("DataSaved", "No se ha podido vincular el usuario", "ok");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "No se ha podido vincular el usuario", "ok");
-                }
-
                 await Navigation.PushAsync(new Configuracion());
             }
-
             
-
         }
     }
 }
