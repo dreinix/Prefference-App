@@ -34,6 +34,7 @@ namespace ArduinoRecognizeSystems
         {
             await Navigation.PushAsync(new Configuracion());
         }
+
         private void sendData()
         {
             try
@@ -41,14 +42,29 @@ namespace ArduinoRecognizeSystems
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 IPAddress iPAddress = IPAddress.Parse("192.168.0.112");
                 IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 8888);
+                Usuario LocalUser = Usuario.GetLocalUser();
+                string[] msg = new string[5];
+                List<UserConfiguration> UserConf = LocalUser.GetConfiguration();
+                for (int i = 0; i < UserConf.Count; i++)
+                {
+                    UserConfiguration uc = UserConf[i];
+                    string code = "2_";
+                    code += i.ToString() + "_" + uc.Value;
+                    msg[i] = code;
+                }
+                UserConfiguration ucm = UserConf[4];
+                string codem = "1_";
+                codem += ucm.Value;
+                msg[4] = codem;
 
-                string msg = "1_1_1";
-                byte[] sendBuffer = Encoding.ASCII.GetBytes(msg);
-                socket.SendTo(sendBuffer, iPEndPoint);
+                foreach (string command in msg)
+                {
+                    byte[] sendBuffer = Encoding.ASCII.GetBytes(command);
+                    socket.SendTo(sendBuffer, iPEndPoint);
 
-                byte[] recBuffer = new byte[1024];
-                int bytesrec = socket.Receive(recBuffer);
-                TestLabel.Text = Encoding.UTF8.GetString(recBuffer, 0, bytesrec);
+                    byte[] recBuffer = new byte[1024];
+                    int bytesrec = socket.Receive(recBuffer);
+                } 
             }catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);

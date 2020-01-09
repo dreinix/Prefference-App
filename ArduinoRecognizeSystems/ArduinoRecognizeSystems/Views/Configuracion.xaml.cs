@@ -17,12 +17,11 @@ namespace ArduinoRecognizeSystems2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Configuracion : ContentPage
     {
-        private SQLiteAsyncConnection sqlite;
         Usuario LocalUser;
+
         public Configuracion()
         {
             InitializeComponent();
-            sqlite = DependencyService.Get<ILocalData>().GetConnection();
             LocalUser = Usuario.GetLocalUser();
             List<UserConfiguration> UserConf = LocalUser.GetConfiguration();
             Button[] buttons = new Button[4] { bluebtn, redbtn, yellowbtn, greenbtn };
@@ -34,36 +33,52 @@ namespace ArduinoRecognizeSystems2.Views
                     buttons[i].BackgroundColor = Color.White;
                 }
             }
+            switch (UserConf[4].Value)
+            {
+                default:
+                    blinkbtn.TextColor = Color.White;
+                    staticbtn.TextColor = Color.Black;
+                    ciclebtn.TextColor = Color.White;
+                    break;
+                case "2":
+                    blinkbtn.TextColor = Color.Black;
+                    staticbtn.TextColor = Color.White;
+                    ciclebtn.TextColor = Color.White;
+                    break;
+                case "3":
+                    blinkbtn.TextColor = Color.White;
+                    staticbtn.TextColor = Color.White;
+                    ciclebtn.TextColor = Color.Black;
+                    break;
+            }
 
         }
         int[] colors = new int[4] { 1, 1, 1, 1 };
-        
+        int mod = 1;
         private async void guardarbtn_Clicked(object sender, EventArgs e)
         {
             try
             {
-
+                UserConfiguration[] conf = new UserConfiguration[5];
+                LocalUser.CleanConfiguration();
+                for (int i = 0; i < 4; i++)
+                {
+                    conf[i] = new UserConfiguration(LocalUser.ID, "led", colors[i].ToString(), 0, "act");
+                }
+                conf[4] = new UserConfiguration(LocalUser.ID, "mod",mod.ToString() , 0, "act");
+                foreach (UserConfiguration item in conf)
+                {
+                    item.SaveConfig(LocalUser);
+                }
+                await DisplayAlert("Correcto", "Configuracion guardada", "ok");
+                await Navigation.PopAsync();
             }
             catch(Exception ex)
             {
                 string err = ex.Message;
                 await DisplayAlert("Error", "No se pudo guardar la configuración", "ok");
             }
-            var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ARSLocalData.db3");
-            SQLiteConnection sQLiteConnection = new SQLiteConnection(dbpath);
-            //user.GetConfiguration();
-            UserConfiguration[] conf = new UserConfiguration[4];
-            LocalUser.CleanConfiguration();
-            for (int i = 0; i < 4; i++)
-            {
-                 conf[i] = new UserConfiguration(LocalUser.ID, "led", colors[i].ToString(),0,"act");
-            }
-            foreach (UserConfiguration item in conf)
-            {
-                item.SaveConfig(LocalUser);
-            }
-            await DisplayAlert("Correcto", "Configuracion guardada", "ok");
-            await Navigation.PopAsync();
+            
         }
 
         private void bluebtn_Clicked(object sender, EventArgs e)
@@ -106,6 +121,29 @@ namespace ArduinoRecognizeSystems2.Views
             }
             else
                 greenbtn.BackgroundColor = Color.White;
+        }
+
+        private void blinkbtn_Clicked(object sender, EventArgs e)
+        {
+            mod = 2;
+            blinkbtn.TextColor = Color.Black;
+            staticbtn.TextColor = Color.White;
+            ciclebtn.TextColor = Color.White;
+        }
+        private void staticbtn_Clicked(object sender, EventArgs e)
+        {
+            mod = 1;
+            blinkbtn.TextColor = Color.White;
+            staticbtn.TextColor = Color.Black;
+            ciclebtn.TextColor = Color.White;
+        }
+        private void ciclebtn_Clicked(object sender, EventArgs e)
+        {
+            mod = 3;
+            blinkbtn.TextColor = Color.White;
+            staticbtn.TextColor = Color.White;
+            ciclebtn.TextColor = Color.Black;
+
         }
     }
 }
