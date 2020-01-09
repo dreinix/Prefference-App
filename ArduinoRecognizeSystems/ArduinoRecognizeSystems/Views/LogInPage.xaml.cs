@@ -32,7 +32,7 @@ namespace ArduinoRecognizeSystems2.Views
             {
                 TestLabel.Text = "¡Autenticado!";
                 
-                if (user.CreateLocalData(sqlite))
+                if (user.BindDevide())
                 {
                     await DisplayAlert("DataSaved", "Se ha vinculado el usuario al teléfono correctamente", "ok");
                 }

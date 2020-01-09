@@ -1,8 +1,11 @@
-﻿using ArduinoRecognizeSystems2.Views;
+﻿using ArduinoRecognizeSystems2.Model;
+using ArduinoRecognizeSystems2.Views;
 using Rg.Plugins.Popup.Services;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -19,6 +22,11 @@ namespace ArduinoRecognizeSystems
         public MainPage()
         {
             InitializeComponent();
+            if (Usuario.GetLocalUser() == null)
+            {
+                //Application.Current.MainPage = new InicioPage();
+                Navigation.PushAsync(new InicioPage());
+            } 
         }
 
         [Obsolete]
