@@ -15,27 +15,30 @@ namespace ArduinoRecognizeSystems2.Views
     {
         public InicioPage()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         private async void signinbtn_Clicked(object sender, EventArgs e)
         {
+            Usuario usuario = new Usuario(entNombre.Text,entClave.Text);
             user.IsVisible = true;
             pass.IsVisible = true;
             entClave.IsVisible = false;
             entUsuario.IsVisible = false;
             entNombre.IsVisible = false;
             confirmarbtn.IsVisible = false;
+        
             //await Navigation.PushAsync(new MainPage());
         }
-
+        
         private void signup_Clicked(object sender, EventArgs e)
         {
             entClave.IsVisible = true;
             entUsuario.IsVisible = true;    
             entNombre.IsVisible = true;
-            confirmarbtn.IsVisible = true;           
+            confirmarbtn.IsVisible = true;
+            user.IsVisible = false;
+            pass.IsVisible = false;
         }
 
         private async void confirmarbtn_Clicked(object sender, EventArgs e)
@@ -48,7 +51,7 @@ namespace ArduinoRecognizeSystems2.Views
             }
             else
             {
-                Preferences.Set("IS_SET", true);
+                
                 Usuario user = new Usuario(entUsuario.Text, entClave.Text, entNombre.Text);
                 if (user.Registrar())
                 {
