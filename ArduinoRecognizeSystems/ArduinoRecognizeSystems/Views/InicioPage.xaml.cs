@@ -1,6 +1,8 @@
 ﻿using ArduinoRecognizeSystems;
+using ArduinoRecognizeSystems.Views;
 using ArduinoRecognizeSystems2.Data;
 using ArduinoRecognizeSystems2.Model;
+using Rg.Plugins.Popup.Services;
 using SQLite;
 using System;
 using System.Diagnostics;
@@ -18,72 +20,17 @@ namespace ArduinoRecognizeSystems2.Views
             InitializeComponent();            
         }
 
-        private async void signinbtn_Clicked(object sender, EventArgs e)
-        {
-            Usuario usuario = new Usuario(entNombre.Text,entClave.Text);
-            user.IsVisible = true;
-            pass.IsVisible = true;
-            entClave.IsVisible = false;
-            entUsuario.IsVisible = false;
-            entNombre.IsVisible = false;
-            confirmarbtn.IsVisible = false;
+        private void signinbtn_Clicked(object sender, EventArgs e)
+        {          
         
-            //await Navigation.PushAsync(new MainPage());
+             PopupNavigation.PushAsync(new PopUpForm());
         }
         
         private void signup_Clicked(object sender, EventArgs e)
         {
-            entClave.IsVisible = true;
-            entUsuario.IsVisible = true;    
-            entNombre.IsVisible = true;
-            confirmarbtn.IsVisible = true;
-            user.IsVisible = false;
-            pass.IsVisible = false;
+            PopupNavigation.PushAsync(new PopUpRegistro());
         }
 
-        private async void confirmarbtn_Clicked(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(entClave.Text) || string.IsNullOrEmpty(entNombre.Text) || string.IsNullOrEmpty(entUsuario.Text))
-            {
-                await DisplayAlert("Error", "Campos vacios", "OK");
-
-
-            }
-            else
-            {
-                
-                Usuario user = new Usuario(entUsuario.Text, entClave.Text, entNombre.Text);
-                if (user.Registrar())
-                {
-                    if (user.LogIn())
-                    {
-                        if (user.BindDevide())
-                        {
-                            await Navigation.PushAsync(new Configuracion());
-                        }
-                        else
-                        {
-                            await DisplayAlert("Error", "No se pudo vincular la cuenta al dispositivo", "OK");
-                        }
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error", "No se pudo conectar al servidor", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "No se pudo registrar el usuario, favor de revisar los datos y su conexión a internet", "OK");
-                }
-                
-            }
-            
-        }
-
-        private void entrarbtn_Clicked(object sender, EventArgs e)
-        {
-          
-
-        }
+        
     }
 }

@@ -36,14 +36,14 @@
                     TextColor="White"
                     IsVisible="False"
                     x:Name="confirmarbtn"
-                    Clicked="confirmarbtn_Clicked"/>
+                    />
             <Button Text="Confirmar"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
                     TextColor="White"
                     IsVisible="False"
                     x:Name="entrarbtn"
-                    Clicked="entrarbtn_Clicked"/>
+                   />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,29 @@
+﻿<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ArduinoRecognizeSystems.Views.PopUpRegistro">
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Padding="30"                
+                 BackgroundColor="White"
+                 Spacing="20">
+        <StackLayout VerticalOptions="Center">
+            <Label HorizontalOptions="Center"
+                   Text="Ingrese sus datos"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+            <Entry x:Name="nametxt" Placeholder="Nombre"/>
+            <Entry x:Name="usertxt" Placeholder="Usuario"/>            
+            <Entry x:Name="clavetxt" Placeholder="Clave"/>
+        </StackLayout>
+        <Button Text="Confirmar"
+                CornerRadius="20"                    
+                BackgroundColor="#7C4DFF"
+                TextColor="White"
+                x:Name="confirmarbtn"
+                Clicked="confirmarbtn_Clicked"/>
+    </StackLayout>
+</popup:PopupPage>
