@@ -1,5 +1,6 @@
 ﻿using ArduinoRecognizeSystems2.Model;
 using ArduinoRecognizeSystems2.Views;
+using Plugin.Fingerprint;
 using Rg.Plugins.Popup.Services;
 using SQLite;
 using System;
@@ -32,15 +33,48 @@ namespace ArduinoRecognizeSystems
         [Obsolete]
         private async void settingbtn_Clicked(object sender, EventArgs e)
         {
+            if (!await AutAsync())
+            {
+                await DisplayAlert("Error", "Reconocimiento fallido", "ok");
+                return;
+            }
             await Navigation.PushAsync(new Configuracion());
         }
+        private async Task<bool> AutAsync()
+        {
+            var result = await CrossFingerprint.Current.IsAvailableAsync(true);
 
-        private void sendData()
+            if (result)
+            {
+                var auth = await CrossFingerprint.Current.AuthenticateAsync("Toca el Sensor");
+
+                int rowVal = auth.GetHashCode();
+                if (auth.Authenticated)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                await DisplayAlert("ooh oh", "Su telefono no tiene lector de huellas", "ok");
+                return false;
+            }
+        }
+        private async Task sendDataAsync()
         {
             try
             {
+                if (!await AutAsync())
+                {
+                    await DisplayAlert("Error", "Reconocimiento fallido", "ok");
+                    return;
+                }
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                IPAddress iPAddress = IPAddress.Parse("192.168.0.112");
+                IPAddress iPAddress = IPAddress.Parse("192.168.1.112");
                 IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 8888);
                 Usuario LocalUser = Usuario.GetLocalUser();
                 string[] msg = new string[5];
@@ -61,9 +95,6 @@ namespace ArduinoRecognizeSystems
                 {
                     byte[] sendBuffer = Encoding.ASCII.GetBytes(command);
                     socket.SendTo(sendBuffer, iPEndPoint);
-
-                    byte[] recBuffer = new byte[1024];
-                    int bytesrec = socket.Receive(recBuffer);
                 } 
             }catch(Exception ex)
             {
@@ -71,9 +102,9 @@ namespace ArduinoRecognizeSystems
             }           
         }
 
-        private void SendButtom_Clicked(object sender, EventArgs e)
+        private async void SendButtom_Clicked(object sender, EventArgs e)
         {
-            sendData();
+            await sendDataAsync();
         }
 
         private async void btLogin_Clicked(object sender, EventArgs e)
