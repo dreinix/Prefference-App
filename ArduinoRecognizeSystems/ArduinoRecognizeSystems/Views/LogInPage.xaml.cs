@@ -28,7 +28,7 @@ namespace ArduinoRecognizeSystems2.Views
         private async void btAuth_ClickedAsync(object sender, EventArgs e)
         {
             Usuario user = new Usuario(txtUser.Text, txtPass.Text);
-            if (user.LogIn())
+            /*if (user.LogIn())
             {
                 TestLabel.Text = "¡Autenticado!";
                 
@@ -44,8 +44,8 @@ namespace ArduinoRecognizeSystems2.Views
             else
             {
                 TestLabel.Text = "Fail";
-            }
-            /*
+            }*/
+            
             var result = await CrossFingerprint.Current.IsAvailableAsync(true);
 
             if (result)
@@ -68,7 +68,7 @@ namespace ArduinoRecognizeSystems2.Views
             else
             {
                 await DisplayAlert("ooh oh", "Su telefono no tiene lector de huellas", "ok");
-            }*/
+            }
         }
     }
 }
