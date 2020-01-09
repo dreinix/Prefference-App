@@ -11,11 +11,10 @@ namespace ArduinoRecognizeSystems2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InicioPage : ContentPage
     {
-        private SQLiteAsyncConnection sqlite;
         public InicioPage()
         {
             InitializeComponent();
-            sqlite = DependencyService.Get<ILocalData>().GetConnection();
+            
         }
 
         private async void signinbtn_Clicked(object sender, EventArgs e)

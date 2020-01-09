@@ -37,6 +37,7 @@ namespace ArduinoRecognizeSystems2.Model
             _Pass = pass;
         }
         public bool LogIn()
+<<<<<<< HEAD
         {
             try
             {
@@ -127,6 +128,8 @@ namespace ArduinoRecognizeSystems2.Model
         }
 
         public void CleanConfiguration()
+=======
+>>>>>>> parent of 460cb13... idk
         {
             try
             {
