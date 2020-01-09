@@ -26,6 +26,10 @@
             <Entry x:Name="entUsuario" Placeholder="Usuario" IsVisible="False"/>
            
             <Entry x:Name="entClave" Placeholder="Contraseña" IsPassword="True" IsVisible="False"/>
+
+            <Entry x:Name="user" Placeholder="Usuario" IsVisible="False"/>
+
+            <Entry x:Name="pass" Placeholder="Contraseña" IsPassword="True" IsVisible="False"/>
             <Button Text="Confirmar"
                     CornerRadius="20"
                     BackgroundColor="#7C4DFF"
@@ -33,6 +37,13 @@
                     IsVisible="False"
                     x:Name="confirmarbtn"
                     Clicked="confirmarbtn_Clicked"/>
+            <Button Text="Confirmar"
+                    CornerRadius="20"
+                    BackgroundColor="#7C4DFF"
+                    TextColor="White"
+                    IsVisible="False"
+                    x:Name="entrarbtn"
+                    Clicked="entrarbtn_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
