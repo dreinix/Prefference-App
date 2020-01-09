@@ -27,7 +27,8 @@ namespace ArduinoRecognizeSystems
             {
                 //Application.Current.MainPage = new InicioPage();
                 Navigation.PushAsync(new InicioPage());
-            } 
+            }
+            btLogin.IsVisible = false;
         }
 
         [Obsolete]

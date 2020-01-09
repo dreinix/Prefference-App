@@ -72,6 +72,66 @@ namespace ArduinoRecognizeSystems2.Model
                 return false;
             }
         }
+        public bool LocalLogin()
+        {
+            try
+            {
+                bool exist = false;
+                var DevideID = Preferences.Get("my_id", string.Empty);
+                if (string.IsNullOrWhiteSpace(DevideID))
+                {
+                    DevideID = System.Guid.NewGuid().ToString();
+                    Preferences.Set("my_id", DevideID);
+                }
+                using (SqlConnection con = new SqlConnection(conectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = con;
+                        cmd.Connection.Open();
+                        cmd.CommandText = "select ID,Pass from tblUser where (UserName=@user and Pass=@pas) and ([Status]='act' and [BinededDevice]=@bd)";
+
+                        cmd.Parameters.AddWithValue("@user", _Username);
+                        cmd.Parameters.AddWithValue("@pas", _Pass);
+                        cmd.Parameters.AddWithValue("@pas",DevideID);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            exist = true;
+                        }
+
+                        if (!exist)
+                        {
+                            cmd.CommandText = "select ID,Pass from tblUser where (UserName=@user and Pass=@pas) and ([Status]='act')";
+                            reader = cmd.ExecuteReader();
+
+                            while (reader.Read())
+                            {
+                                cmd.CommandText = "Update TblUser set [BindedDevice] = @device,[Status]='lin' where [Username]=@user";
+                                reader = cmd.ExecuteReader();
+                                exist = true;
+                            }
+                            
+                        }
+                    }
+                    if (exist)
+                    {
+
+                        return true;
+                    }
+                    else
+                    {
+
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool LogIn()
         {
             try
@@ -83,7 +143,7 @@ namespace ArduinoRecognizeSystems2.Model
                     {
                         cmd.Connection = con;
                         cmd.Connection.Open();
-                        cmd.CommandText = "select ID,Pass from tblUser where (UserName=@user and Pass=@pas) and [Status]='act'";
+                        cmd.CommandText = "select ID,Pass from tblUser where (UserName=@user and Pass=@pas) and [Status]='act' or [Status]='lin'";
 
                         cmd.Parameters.AddWithValue("@user", _Username);
                         cmd.Parameters.AddWithValue("@pas", _Pass);
